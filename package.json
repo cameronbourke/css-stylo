@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --inline --hot --content-base example/ --config webpack.config.js",
     "build": "webpack",
-    "build:prod": "webpack -p",
-    "prepublish": "",
+    "compile": "babel src --out-dir dist",
+    "prepublish": "npm run compile",
     "test": "tape -r babel-register ./src/**/*.spec.js | tap-spec"
   },
   "devDependencies": {
