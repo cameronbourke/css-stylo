@@ -11,7 +11,7 @@ npm install --save stylo
 
 ## Demo & Example
 
-Live demo: [cameronbourke.github.io/example](http://cameronbourke.github.io/example/index.html);
+Live demo: [cameronbourke.github.io/stylo](http://cameronbourke.github.io/stylo/example/index.html)
 
 To build the example locally, clone this repo then run:
 
