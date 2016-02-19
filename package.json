@@ -10,6 +10,11 @@
     "prepublish": "npm run compile",
     "test": "tape -r babel-register ./src/**/*.spec.js | tap-spec"
   },
+  "keywords": [
+    "react",
+    "css",
+    "style"
+  ],
   "devDependencies": {
     "babel-core": "~6.3.26",
     "babel-loader": "~6.2.0",
@@ -17,6 +22,7 @@
     "babel-preset-react": "~6.3.13",
     "babel-preset-stage-0": "~6.3.13",
     "expect": "~1.13.4",
+    "react": "0.14.7",
     "react-ace": "3.1.0",
     "react-addons-test-utils": "~0.14.3",
     "react-dom": "~0.14.5",
@@ -25,9 +31,9 @@
     "webpack": "~1.12.9",
     "webpack-dev-server": "~1.14.0"
   },
-  "peerDependencies": {
-    "react": "0.14.7"
-  },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cameronbourke/stylo.git"
