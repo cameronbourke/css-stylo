@@ -16,19 +16,16 @@ const parseStructure = (styles) => {
 	}
 
 	return styles.reduce((prev, current) => {
+		let styleObj = getStyles(current, {});
 		// mimic css cascade by merging two or more instances
 		// of the same style object
-		// if (prev[current.name] !== undefined) {
-		// 	current = {
-		// 		name: current.name,
-		// 		properties: [
-		// 			...prev[current.name].properties,
-		// 			...current.properties
-		// 		]
-		// 	};
-		// }
+		if (prev[current.name] !== undefined) {
+			styleObj = Object.assign({}, prev[current.name], styleObj);
+		}
 
-		return prev = getStyles(current, prev);
+		prev[current.name] = styleObj[current.name];
+
+		return prev;
 	}, {});
 
 }

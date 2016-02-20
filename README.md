@@ -6,7 +6,7 @@ Built with react in mind, stylo takes a string representing css and converts it 
 ## Installation
 
 ```
-npm install --save stylo
+npm install --save css-stylo
 ```
 
 ## Demo & Example
@@ -26,7 +26,7 @@ Then open localhost:8080 in a browser.
 Simply pass a string to `stylo`. Using ES6 [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/template_strings) makes creating a string of css trivial. The function will look for certain css selectors in the string, at the moment only `.classes` and `#ids` are supported. It will then go on and create a corresponding object of each selector.
 ```js
 // using babel and a module loader
-import stylo from 'stylo';
+import stylo from 'css-stylo';
 
 const style = stylo(`
 	.example {
