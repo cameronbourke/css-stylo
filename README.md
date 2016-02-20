@@ -1,7 +1,9 @@
-stylo
+stylo-css
 =========================
 
-Built with react in mind, stylo takes a string representing css and converts it to a style object (stylo).
+#### Preface
+
+Built with react in mind, this is a naive implementation of converting a string of css to a style object (stylo). This lib was created as more of a thought experiment and a chance to get my head around recursion. Never the less, it made for a pretty cool [REPL](http://cameronbourke.github.io/stylo/example/index.html), and if you did want to use it in production, I've whipped up some docs for you below.
 
 ## Installation
 
@@ -24,6 +26,11 @@ Then open localhost:8080 in a browser.
 ## Usage
 
 Simply pass a string to `stylo`. Using ES6 [template strings](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/template_strings) makes creating a string of css trivial. The function will look for certain css selectors in the string, at the moment only `.classes` and `#ids` are supported. It will then go on and create a corresponding object of each selector.
+
+```js
+stylo(cssString, parsePixels)
+```
+
 ```js
 // using babel and a module loader
 import stylo from 'css-stylo';
@@ -55,9 +62,9 @@ You can then use this object to apply inline styles to your components.
 <div style={style.example}>I'm an example</div>
 ```
 
-This can be particularly handy when working with React Native because you are able to define your styles using css's syntax. **Note** when using `px` values, `stylo` will remove it so that both React and React Native are able to interpret the value, as React handles the number `10` to equal `10px`.
+This can be particularly handy when working with React Native because you are able to define your styles using css's syntax. **Note** when using `px` values, `stylo` will remove it so that both React and React Native are able to interpret the value, as React handles the number `10` to equal `10px`. Remember, you can pass false as the second argument to stop `stylo` from doing so.
 
-<!-- The best part is that the styles will cascade just like css does, so something like this will work as expected.
+The best part is that the styles will cascade just like they do in css, so something like this will work as expected.
 ```js
 // css string representation
 const style = stylo(`
@@ -78,7 +85,7 @@ const style = stylo(`
 		"fontSize": 20
   }
 }
-``` -->
+```
 
 ### Bonus
 
@@ -120,8 +127,6 @@ const style = stylo(`
 - Add unit tests
 - Create style objects without a selector
 - Throw helpful errors if the css is not valid
-- Add a second argument for parsing numbers
-- Add a some ability to cascade styles
 
 ## License
 
