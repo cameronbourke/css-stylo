@@ -3,7 +3,7 @@ import parseStructure from './parse-structure';
 
 const stylo = (cssString, parsePixels) => {
 	const stylesArray = generateStructure(cssString);
-	return parseStructure(stylesArray);
+	return parseStructure(stylesArray, parsePixels);
 };
 
 export default stylo;

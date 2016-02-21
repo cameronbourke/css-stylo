@@ -14,7 +14,7 @@ const groupSelectors = (arr) => {
 	}, []);
 }
 
-const recursiveFn = (selector, propertiesIndex, groupStrs) => {
+const recursiveFn = (selector, propertiesIndex, groupStrs, parsePxs) => {
 	const propertiesStr = groupStrs[propertiesIndex];
 
 	const setPropertiesObj = ([key, value]) => {
@@ -22,14 +22,16 @@ const recursiveFn = (selector, propertiesIndex, groupStrs) => {
 		const selector = regex.isSelector(key);
 
 		const isPixels = regex.isPixelValue(value);
-		if (isPixels) propValue = removePixelValues(value);
+		if (isPixels && parsePxs) propValue = removePixelValues(value);
 
 		const isNumber = !isNaN(propValue);
 		if (isNumber) propValue = Number(propValue);
 
 		return {
 			key: !selector ? regex.snakeToCamel(key) : null,
-			value: !selector ? propValue : recursiveFn(regex.getWord(key), propertiesIndex + 1, groupStrs)
+			value: !selector ? propValue : recursiveFn(
+				regex.getWord(key), propertiesIndex + 1, groupStrs, parsePxs
+			)
 		};
 	};
 
@@ -49,11 +51,11 @@ const recursiveFn = (selector, propertiesIndex, groupStrs) => {
 
 }
 
-const generateStructure = (cssStr) => {
+const generateStructure = (cssStr, parsePxs = true) => {
 	const lines = cssStr.split(/[{-}]/g)
 	const groups = groupSelectors(lines);
 
-	return groups.map((group, i) => recursiveFn(group[0], 1, group));
+	return groups.map((group, i) => recursiveFn(group[0], 1, group, parsePxs));
 }
 
 export default generateStructure;

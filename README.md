@@ -1,9 +1,9 @@
-stylo-css
+css-stylo
 =========================
 
 #### Preface
 
-Built with react in mind, this is a naive implementation of converting a string of css to a style object (stylo). This lib was created as more of a thought experiment and a chance to get my head around recursion. Never the less, it made for a pretty cool [REPL](http://cameronbourke.github.io/stylo/example/index.html), and if you did want to use it in production, I've whipped up some docs for you below.
+Built with react in mind, this is a naive implementation of converting a string of css to a style object (css-stylo). This lib was created as more of a thought experiment and a chance to get my head around recursion. Never the less, it made for a pretty cool [REPL](http://cameronbourke.github.io/css-stylo/example/index.html), and if you did want to use it in production, I've whipped up some docs for you below.
 
 ## Installation
 
@@ -13,7 +13,7 @@ npm install --save css-stylo
 
 ## Demo & Example
 
-Live demo: [cameronbourke.github.io/stylo](http://cameronbourke.github.io/stylo/example/index.html)
+Live demo: [cameronbourke.github.io/css-stylo](http://cameronbourke.github.io/css-stylo/example/index.html)
 
 To build the example locally, clone this repo then run:
 

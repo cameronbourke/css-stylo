@@ -2,7 +2,7 @@ const context = __dirname + '/example';
 
 module.exports = {
 	context: context,
-	entry: './app.js',
+	entry: './app.jsx',
 	output: {
 		path: context,
 		filename: 'bundle.js'

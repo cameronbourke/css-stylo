@@ -45,7 +45,9 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<h3 className='title'>stylo</h3>
+				<h3 className='title'>
+					css-stylo
+				</h3>
 				<section className='container'>
 					<div className='half input'>
 						<AceEditor

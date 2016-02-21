@@ -1,5 +1,5 @@
 {
-  "name": "stylo",
+  "name": "css-stylo",
   "version": "0.0.1",
   "description": "'stylo takes any css string and converts it to a style object'",
   "main": "dist/index.js",
