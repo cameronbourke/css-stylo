@@ -1,6 +1,6 @@
 {
   "name": "css-stylo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "'stylo takes any css string and converts it to a style object'",
   "main": "dist/index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "style"
   ],
   "devDependencies": {
+    "babel-cli": "6.5.1",
     "babel-core": "~6.3.26",
     "babel-loader": "~6.2.0",
     "babel-preset-es2015": "~6.3.13",

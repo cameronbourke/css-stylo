@@ -125,7 +125,7 @@
 					_react2.default.createElement(
 						'h3',
 						{ className: 'title' },
-						'stylo'
+						'css-stylo'
 					),
 					_react2.default.createElement(
 						'section',
@@ -19784,9 +19784,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var stylo = function stylo(cssString) {
+	var stylo = function stylo(cssString, parsePixels) {
 		var stylesArray = (0, _generateStructure2.default)(cssString);
-		return (0, _parseStructure2.default)(stylesArray);
+		return (0, _parseStructure2.default)(stylesArray, parsePixels);
 	};
 	
 	exports.default = stylo;
@@ -19823,7 +19823,7 @@
 		}, []);
 	};
 	
-	var recursiveFn = function recursiveFn(selector, propertiesIndex, groupStrs) {
+	var recursiveFn = function recursiveFn(selector, propertiesIndex, groupStrs, parsePxs) {
 		var propertiesStr = groupStrs[propertiesIndex];
 	
 		var setPropertiesObj = function setPropertiesObj(_ref) {
@@ -19836,14 +19836,14 @@
 			var selector = regex.isSelector(key);
 	
 			var isPixels = regex.isPixelValue(value);
-			if (isPixels) propValue = (0, _helpers.removePixelValues)(value);
+			if (isPixels && parsePxs) propValue = (0, _helpers.removePixelValues)(value);
 	
 			var isNumber = !isNaN(propValue);
 			if (isNumber) propValue = Number(propValue);
 	
 			return {
 				key: !selector ? regex.snakeToCamel(key) : null,
-				value: !selector ? propValue : recursiveFn(regex.getWord(key), propertiesIndex + 1, groupStrs)
+				value: !selector ? propValue : recursiveFn(regex.getWord(key), propertiesIndex + 1, groupStrs, parsePxs)
 			};
 		};
 	
@@ -19863,11 +19863,13 @@
 	};
 	
 	var generateStructure = function generateStructure(cssStr) {
+		var parsePxs = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+	
 		var lines = cssStr.split(/[{-}]/g);
 		var groups = groupSelectors(lines);
 	
 		return groups.map(function (group, i) {
-			return recursiveFn(group[0], 1, group);
+			return recursiveFn(group[0], 1, group, parsePxs);
 		});
 	};
 	
@@ -19958,19 +19960,16 @@
 		};
 	
 		return styles.reduce(function (prev, current) {
+			var styleObj = getStyles(current, {});
 			// mimic css cascade by merging two or more instances
 			// of the same style object
-			// if (prev[current.name] !== undefined) {
-			// 	current = {
-			// 		name: current.name,
-			// 		properties: [
-			// 			...prev[current.name].properties,
-			// 			...current.properties
-			// 		]
-			// 	};
-			// }
+			if (prev[current.name] !== undefined) {
+				styleObj = Object.assign({}, prev[current.name], styleObj);
+			}
 	
-			return prev = getStyles(current, prev);
+			prev[current.name] = styleObj[current.name];
+	
+			return prev;
 		}, {});
 	};
 	
